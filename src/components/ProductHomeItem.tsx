@@ -4,7 +4,7 @@ const { width } = Dimensions.get('window'); //lấy thông tin kích thước th
 
 type ProductHomeItemProps = {
     image: string,
-    title: string,
+    id_typetree: string,
     name: string,
     price: number,
     onPress: () => void
@@ -13,7 +13,7 @@ type ProductHomeItemProps = {
 const ProductHomeItem: React.FC<ProductHomeItemProps> = ({
     image,
     name,
-    title,
+    id_typetree,
     price,
     onPress
 }) => {
@@ -21,7 +21,7 @@ const ProductHomeItem: React.FC<ProductHomeItemProps> = ({
         <Pressable onPress={onPress} style={styles.container}>
             <Image style={styles.image} source={{ uri: image }} />
             <Text style={styles.name}>{name}</Text>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.typetree}>{id_typetree}</Text>
             <Text style={styles.price}>{price}đ</Text>
         </Pressable>
     )
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     container: {
         margin: 8,
     },
-    title: {
+    typetree: {
         color: '#606060',
     },
     name: {
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
     },
     image: {
         width: (width - 64) / 2,
-        height: 220,
-        borderRadius: 8
+        height: 160,
+        borderRadius: 8,
+        backgroundColor: '#F6F6F6'
     },
     price: {
         color: '#007537',
@@ -51,4 +52,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default React.memo(ProductHomeItem)
+export default React.memo(ProductHomeItem);

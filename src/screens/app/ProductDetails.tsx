@@ -1,13 +1,34 @@
-import React from "react";
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Image, Pressable, ScrollView, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import axios from "axios";
 
 
 const ProductDetails: React.FC = () => {
+    const navigation = useNavigation();
+
+    const [product, setProduct] = useState<any | null>(null);
+
+    const onBack = () => {
+        navigation.goBack();
+    }
+
+    const onCart = () => {
+        ToastAndroid.show("Đã thêm vào giỏ hàng", ToastAndroid.SHORT);
+    }
+
+    
     return (
         <View style={styles.container}>
-            <Header title="Chi tiết sản phẩm" iconLeft={require('../../assets/icons/iconleft.png')} />
+            <Header
+                title="Chi tiết sản phẩm"
+                iconLeft={require('../../assets/icons/iconleft.png')}
+                iconRight={require('../../assets/icons/shopping-cart.png')}
+                onPressLeft={onBack}
+                onPressRight={onCart}
+                 />
             <View style={styles.image}>
                 <Image source={require('../../assets/image/image1.png')} />
             </View>
